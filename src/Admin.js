@@ -43,9 +43,6 @@ const Admin = () => {
     });
     setOpenDialog(false);
     await fetchData();
-
-    const tableContainer = document.getElementById("table-container");
-    tableContainer.scrollTop = tableContainer.scrollHeight;
   };
 
   const handleDeleteItem = async (itemId) => {

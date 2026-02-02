@@ -1,11 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
+import { colors } from "../colors";
 
 export const CellRow = React.memo(({ values, size, onAnimateFinished }) => {
-  // convert string values to array of number
-  console.log("size", values);
-  
+  // convert string values to array of number  
   const valuesToRender = React.useMemo(() => {
     const result = values?.msisdn?.split("").map((value) => parseInt(value));
 
@@ -22,8 +21,6 @@ export const CellRow = React.memo(({ values, size, onAnimateFinished }) => {
     return result;
   }, [values, size]);
 
-  console.log("valuesToRender", valuesToRender);
-
   const [itemToRender, setItemToRender] = React.useState([]);
 
   React.useEffect(() => {
@@ -39,13 +36,10 @@ export const CellRow = React.memo(({ values, size, onAnimateFinished }) => {
   }, [valuesToRender]);
 
   const onCellAnimateFinished = React.useCallback(() => {
-    console.log("cell animate finished");
     setItemToRender((itemToRender) => {
       if (itemToRender.length < valuesToRender.length) {
-        console.log("celllrow animate next");
         return valuesToRender.slice(0, itemToRender.length + 1);
       } else {
-        console.log("cellrow animate finished");
         onAnimateFinished();
       }
       return itemToRender;
@@ -133,7 +127,7 @@ export const Cell = ({ value, onAnimateFinished }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        borderColor: "#00377D",
+        borderColor: colors.primary,
         borderRadius: 2,
         borderWidth: 2,
         borderStyle: "solid",
@@ -144,7 +138,7 @@ export const Cell = ({ value, onAnimateFinished }) => {
         variant="h2"
         sx={{
           fontWeight: "bold",
-          color: "#00377D",
+          color: colors.primary,
           // animation when value is changing. duration 5s
           transition: "all 5s",
         }}
@@ -168,10 +162,8 @@ const CellRows = ({ values, onAnimateFinished }) => {
   }, [values]);
 
   const onCellRowsAnimateFinished = React.useCallback(() => {
-    console.log("onCellRowsAnimateFinished");
     setSource((itemToRender) => {
       if (itemToRender.length < values.length) {
-        console.log("itemToRender", itemToRender.length, values.length);
         return values.slice(0, itemToRender.length + 1);
       } else {
         onAnimateFinished();

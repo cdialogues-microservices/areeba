@@ -1,63 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
-const ShortCode = ({ code }) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "#00377D",
-        borderRadius: 2,
-        boxShadow: 4,
-        height: 48,
-        // align items in center
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        sx={{
-          fontSize: 28,
-          fontWeight: "bold",
-          color: "white",
-          textAlign: "center",
-          lineHeight: "64px",
-          paddingLeft: 6,
-          paddingRight: 6,
-        }}
-      >
-        {code}
-      </Box>
-    </Box>
-  );
-};
-
-const Logo = () => {
-  return (
-    <Box
-      sx={{
-        width: 64,
-        height: 64,
-        // backgroundColor: "white",
-        borderRadius: 16,
-        // boxShadow: 4,
-        padding: 2,
-      }}
-    >
-      <img
-        src="/logo192.png"
-        alt="logo"
-        width="64"
-        height="64"
-        style={{ objectFit: "contain" }}
-      />
-    </Box>
-  );
-};
+import DrawHeader from "./DrawHeader";
+import { colors } from "../colors";
+import { NAME } from "../constants";
 
 const PrizeInfo = ({
   onStart,
@@ -110,20 +59,7 @@ const PrizeInfo = ({
               paddingRight: 4,
             }}
           >
-            Bienvenue au jeu EduQuiz!
-          </Box>
-          <Box
-            sx={{
-              fontSize: 48,
-              fontWeight: "bold",
-              color: "black",
-              textAlign: "center",
-              lineHeight: "64px",
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-          >
-            EduQuiz!
+            {`Bienvenue au "${NAME}"`}
           </Box>
           <Box
             sx={{
@@ -170,8 +106,8 @@ const PrizeInfo = ({
                 paddingBottom: 1,
                 paddingLeft: 8,
                 paddingRight: 8,
-                backgroundColor: isPending ? "#00377D" : "white",
-                borderColor: "#00377D",
+                backgroundColor: isPending ? colors.primary : "white",
+                borderColor: colors.primary,
                 disabled: isPending,
                 borderWidth: 3,
                 borderRadius: 3,
@@ -179,9 +115,9 @@ const PrizeInfo = ({
                 // bold
                 fontWeight: "bold",
                 "&:hover": {
-                  backgroundColor: "#00377D",
+                  backgroundColor: colors.primary,
                   color: "white",
-                  borderColor: "#00377D",
+                  borderColor: colors.primary,
                   borderWidth: 3,
                   borderRadius: 3,
                   boxShadow: "none",
@@ -242,7 +178,7 @@ const PrizeInfo = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderColor: "#00377D",
+              borderColor: colors.primary,
               borderRadius: 1,
               borderWidth: 2,
               borderStyle: "solid",
@@ -273,7 +209,7 @@ const PrizeInfo = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderColor: "#00377D",
+              borderColor: colors.primary,
               borderRadius: 1,
               borderWidth: 2,
               borderStyle: "solid",
@@ -302,7 +238,7 @@ const PrizeInfo = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderColor: "#00377D",
+              borderColor: colors.primary,
               borderRadius: 1,
               borderWidth: 2,
               borderStyle: "solid",
@@ -330,7 +266,7 @@ const PrizeInfo = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderColor: "#00377D",
+              borderColor: colors.primary,
               borderRadius: 1,
               borderWidth: 2,
               borderStyle: "solid",
@@ -358,7 +294,7 @@ const PrizeInfo = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderColor: "#00377D",
+              borderColor: colors.primary,
               borderRadius: 1,
               borderWidth: 2,
               borderStyle: "solid",
@@ -406,9 +342,9 @@ const PrizeInfo = ({
               // change text color to red
               sx={{
                 color: "white",
-                backgroundColor: "#00377D",
+                backgroundColor: colors.primary,
                 // add border color to red
-                borderColor: "#00377D",
+                borderColor: colors.primary,
                 // add border width to 2
                 borderWidth: 2,
                 // add border style to solid
@@ -422,9 +358,9 @@ const PrizeInfo = ({
                 borderRadius: 3,
                 // hover effect
                 "&:hover": {
-                  backgroundColor: "#00377D",
+                  backgroundColor: colors.primary,
                   color: "white",
-                  borderColor: "#00377D",
+                  borderColor: colors.primary,
                 },
               }}
               onChange={onChangeSelectType}
@@ -446,9 +382,9 @@ const PrizeInfo = ({
                 // change text color to red
                 sx={{
                   color: "white",
-                  backgroundColor: "#00377D",
+                  backgroundColor: colors.primary,
                   // add border color to red
-                  borderColor: "#00377D",
+                  borderColor: colors.primary,
                   // add border width to 2
                   borderWidth: 2,
                   // add border style to solid
@@ -462,9 +398,9 @@ const PrizeInfo = ({
                   borderRadius: 3,
                   // hover effect
                   "&:hover": {
-                    backgroundColor: "#00377D",
+                    backgroundColor: colors.primary,
                     color: "white",
-                    borderColor: "#00377D",
+                    borderColor: colors.primary,
                   },
                 }}
                 onChange={onChangeSelectDate}
@@ -495,7 +431,6 @@ const Start = ({
   React.useEffect(() => {
     if (isPending) {
       const timeout = setTimeout(() => {
-        console.log("Draw completed");
         onStart();
       }, 4000);
       return () => clearTimeout(timeout);
@@ -519,21 +454,7 @@ const Start = ({
         overflowY: "auto"
       }}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          right: 24,
-          left: 24,
-          top: 24,
-          flexDirection: "row",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Box>{shortCode ? <ShortCode code={shortCode} /> : undefined}</Box>
-        <Logo />
-      </Box>
+      <DrawHeader shortCode={shortCode} />
       <Box
         sx={{
           position: "absolute",

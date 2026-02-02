@@ -59,8 +59,6 @@ const AddNewItemDialog = ({ open, handleClose, handleAddItem }) => {
   };
 
   const handleAddWinnerItem = (winnerItem) => {
-    console.log(winnerItem);
-
     setNewItem((prevState) => ({
       ...prevState,
       winners: [...prevState.winners, winnerItem],
@@ -68,7 +66,6 @@ const AddNewItemDialog = ({ open, handleClose, handleAddItem }) => {
     setOpenAddWinnerDialog(false);
   };
 
-  console.log(newItem);
 
   return (
     <>

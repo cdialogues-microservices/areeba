@@ -1,59 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import CellRows from "./CellRows";
-
-const ShortCode = ({ code }) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "#00377D",
-        borderRadius: 2,
-        boxShadow: 4,
-        height: 48,
-        // align items in center
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Box
-        sx={{
-          fontSize: 28,
-          fontWeight: "bold",
-          color: "white",
-          textAlign: "center",
-          lineHeight: "64px",
-          paddingLeft: 6,
-          paddingRight: 6,
-        }}
-      >
-        {code}
-      </Box>
-    </Box>
-  );
-};
-
-const Logo = () => {
-  return (
-    <Box
-      sx={{
-        width: 64,
-        height: 64,
-        // backgroundColor: "white",
-        borderRadius: 16,
-        // boxShadow: 4,
-        padding: 2,
-      }}
-    >
-      <img
-        src="/logo192.png"
-        alt="logo"
-        width="64"
-        height="64"
-        style={{ objectFit: "contain" }}
-      />
-    </Box>
-  );
-};
+import { colors } from "../colors";
+import DrawHeader from "./DrawHeader";
+import { NAME } from "../constants";
 
 const PrizeInfo = ({ values, date, prize, onAnimateFinished }) => {
   return (
@@ -74,7 +24,7 @@ const PrizeInfo = ({ values, date, prize, onAnimateFinished }) => {
           paddingRight: 4,
         }}
       >
-        EduQuiz
+        {`"${NAME}"`}
       </Box>
       <Box
         sx={{
@@ -93,7 +43,7 @@ const PrizeInfo = ({ values, date, prize, onAnimateFinished }) => {
         sx={{
           fontSize: 24,
           fontWeight: "bold",
-          color: "#00377D",
+          color: colors.primary,
           textAlign: "center",
           lineHeight: "64px",
           paddingLeft: 4,
@@ -123,7 +73,6 @@ const PrizeInfo = ({ values, date, prize, onAnimateFinished }) => {
 
 const Show = ({ onDrawCompleted, values, date, prize, shortCode }) => {
   const onAnimateFinished = React.useCallback(() => {
-    console.log("Animate finished");
     onDrawCompleted();
   }, [onDrawCompleted]);
 
@@ -140,21 +89,7 @@ const Show = ({ onDrawCompleted, values, date, prize, shortCode }) => {
         overflowY: "auto"
       }}
     >
-      <Box
-        sx={{
-          position: "absolute",
-          right: 24,
-          left: 24,
-          top: 24,
-          flexDirection: "row",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <ShortCode code={shortCode} />
-        <Logo />
-      </Box>
+      <DrawHeader shortCode={shortCode} />
       <Box
         sx={{
           position: "absolute",

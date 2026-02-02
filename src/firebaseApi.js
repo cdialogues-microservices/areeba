@@ -17,8 +17,6 @@ import { formatDate } from "./format";
 const getDataByData = async (date, type, limitNumber) => {
   const date1 = date.split("/");
 
-  console.log("! FIREBASE getDataByData.date !", date);
-
   const timestamp = new Date(date1[2], date1[1] - 1, date1[0]);
 
   // fetch the the latest item from databae prior to the date
@@ -66,8 +64,6 @@ const getAllData = async () => {
 };
 
 const createItem = async (newItem) => {
-  console.log("newItem", newItem);
-
   // Then convert it to a Firebase Timestamp
 
   // convert newItem.date from string in format MM-DD-YYYY to timestamp. date could be without leading zero. For example, 1-1-2022
@@ -81,8 +77,6 @@ const createItem = async (newItem) => {
 };
 
 const deleteItem = async (id) => {
-  console.log("id", id);
-
   await deleteDoc(doc(db, "Lotteries", id));
 };
 
