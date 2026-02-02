@@ -17,7 +17,6 @@ const DrawContainer = ({ originalType }) => {
   const [allData, setAllData] = React.useState(undefined);
 
   const onChangeDate = React.useCallback((d) => {
-    console.log("onChangeDate", d);
     setDate(d);
   }, []);
 
@@ -51,8 +50,6 @@ const DrawContainer = ({ originalType }) => {
     }
 
     const response = allData.find((item) => item.date === date) || allData[0];
-
-    console.log("response", response);
 
     setData(
       !response
